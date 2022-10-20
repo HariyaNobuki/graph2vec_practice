@@ -100,7 +100,7 @@ def save_embedding(output_path, model, files, dimensions):
     """
     out = []
     for f in files:
-        identifier = path2name(f)
+        identifier = path2name(f)       # 結果的に数値だけになる
         out.append([identifier] + list(model.docvecs["g_"+identifier]))
     column_names = ["type"]+["x_"+str(dim) for dim in range(dimensions)]
     out = pd.DataFrame(out, columns=column_names)

@@ -119,8 +119,8 @@ def main(args):
     print("\nOptimization started.\n")
 
     model = Doc2Vec(document_collections,
-                    vector_size=args.dimensions,
-                    window=0,
+                    vector_size=args.dimensions,    # いくつにベクト化するのか
+                    window=0,                           # 何単語でベクトル化するか
                     min_count=args.min_count,
                     dm=0,
                     sample=args.down_sampling,

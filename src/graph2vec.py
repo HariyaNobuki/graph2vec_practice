@@ -54,7 +54,7 @@ class WeisfeilerLehmanMachine:
             self.features = self.do_a_recursion()
 
 def path2name(path):
-    base = os.path.basename(path)
+    base = os.path.basename(path)   # 拡張子を含むpathの部分だけ獲得する(今後も便利ツールになりそう)
     return os.path.splitext(base)[0]
 
 def dataset_reader(path):

@@ -78,7 +78,7 @@ def dataset_reader(path):
        
     return graph, features, name
 
-def feature_extractor(path, rounds):
+def feature_extractor(path, rounds):    # rounds == iterations
     """
     Function to extract WL features from a graph.
     :param path: The path to the graph json.
@@ -115,6 +115,7 @@ def main(args):
     """
     graphs = glob.glob(os.path.join(args.input_path, "*.json"))
     print("\nFeature extraction started.\n")
+    print(args.wl_iterations)
     # OKここを解析したらここの部分に関してはどうにかなりそう
     document_collections = Parallel(n_jobs=args.workers)(delayed(feature_extractor)(g, args.wl_iterations) for g in tqdm(graphs))
     print("\nOptimization started.\n")

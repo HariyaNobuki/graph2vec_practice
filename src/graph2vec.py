@@ -119,7 +119,7 @@ def main(args):
     print("\nOptimization started.\n")
 
     model = Doc2Vec(document_collections,
-                    vector_size=args.dimensions,    # いくつにベクト化するのか
+                    vector_size=args.dimensions,    # いくつにベクト化するのか(128)
                     window=0,                           # 何単語でベクトル化するか
                     min_count=args.min_count,           # 指定の回数以下の出現回数の単語は無視する
                     dm=0,

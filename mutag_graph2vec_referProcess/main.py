@@ -51,7 +51,7 @@ def process_data() -> Tuple[dict, dict]:
     with open(GRAPH_IDS_FILE, 'r') as graph_ids_file_handle:    # MUTAG_graph_indicator
         node_id_to_graph_id = dict(enumerate(map(int, graph_ids_file_handle.readlines()), start=1))
         s_ex = set(node_id_to_graph_id.values())
-        graph_id_to_graph = {graph_id: nx.Graph() for graph_id in set(node_id_to_graph_id.values())}    # valueのみ抽出（重複は認めないマン）
+        graph_id_to_graph = {graph_id: nx.Graph() for graph_id in set(node_id_to_graph_id.values())}    # valueのみ抽出（重複は認めないマン）　多分これはからのグラフなんやろ
         for node_id, graph_id in node_id_to_graph_id.items():   # len -> 3371
             print(node_id, graph_id)
             graph_id_to_graph[graph_id].add_node(node_id)   # in module

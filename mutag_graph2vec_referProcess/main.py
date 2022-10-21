@@ -77,9 +77,16 @@ def process_data() -> Tuple[dict, dict]:
         graph = graph_id_to_graph[graph_id]
         assert dst_id in graph.nodes
         graph.add_edge(src_id, dst_id, edge_label=edge_label)   # ここまでで許容されてはいないか？
+        print(graph.nodes)
+        print(graph.edges)
+        print(graph.adj)
+        print(graph.degree)
         fig = plt.figure()
         nx.draw(graph, with_labels=True)
-        fig.savefig("sample.png")
+        fig.savefig("sample_i.png")
+    fig = plt.figure()
+    nx.draw(graph, with_labels=True)
+    fig.savefig("sample.png")
 
     with open(GRAPH_LABELS_FILE, 'r') as graph_labels_file_handle:
         graph_id_to_graph_label = dict(enumerate(map(lambda label: 1 if label.strip()=='1' else 0, graph_labels_file_handle.readlines()), start=1))

@@ -28,6 +28,7 @@ import multiprocessing as mp
 import networkx as nx
 from typing import Dict, Tuple
 import os , sys
+import matplotlib.pyplot as plt
 
 from misc_utilities import *
 from global_values import *
@@ -76,6 +77,9 @@ def process_data() -> Tuple[dict, dict]:
         graph = graph_id_to_graph[graph_id]
         assert dst_id in graph.nodes
         graph.add_edge(src_id, dst_id, edge_label=edge_label)   # ここまでで許容されてはいないか？
+        fig = plt.figure()
+        nx.draw(graph, with_labels=True)
+        fig.savefig("sample.png")
 
     with open(GRAPH_LABELS_FILE, 'r') as graph_labels_file_handle:
         graph_id_to_graph_label = dict(enumerate(map(lambda label: 1 if label.strip()=='1' else 0, graph_labels_file_handle.readlines()), start=1))

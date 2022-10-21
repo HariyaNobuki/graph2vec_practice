@@ -33,7 +33,7 @@ def parameter_parser():
 
     parser.add_argument("--epochs",
                         type=int,
-                        default=10,
+                        default=1000,
 	                help="Number of epochs. Default is 10.")
 
     parser.add_argument("--min-count",

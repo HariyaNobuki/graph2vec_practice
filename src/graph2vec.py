@@ -49,6 +49,7 @@ class WeisfeilerLehmanMachine:
     def do_recursions(self):
         """
         The method does a series of WL recursions.
+        このメソッドは、一連の WL 再帰を実行します。
         """
         for _ in range(self.iterations):
             self.features = self.do_a_recursion()
@@ -68,7 +69,10 @@ def dataset_reader(path):
     name = path2name(path)
     data = json.load(open(path))
     graph = nx.from_edgelist(data["edges"])
-
+    print(graph.nodes)
+    print(graph.edges)
+    print(graph.adj)
+    print(graph.degree)
     if "features" in data.keys():
         features = data["features"]
         features = {int(k): v for k, v in features.items()}

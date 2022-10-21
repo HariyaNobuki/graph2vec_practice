@@ -64,7 +64,7 @@ def process_data() -> Tuple[dict, dict]:
             graph_id = node_id_to_graph_id[node_id]
             graph = graph_id_to_graph[graph_id]
             graph.nodes[node_id]['node_label'] = node_label
-    with open(EDGES_FILE, 'r') as edges_file_handle:
+    with open(EDGES_FILE, 'r') as edges_file_handle:    # MUTAG_A.txt
         edges_file_lines = edges_file_handle.readlines()
         split_lines = eager_map(lambda s: s.split(','), edges_file_lines)
         assert set(map(len, split_lines)) == {2}
@@ -72,10 +72,11 @@ def process_data() -> Tuple[dict, dict]:
     with open(EDGE_LABELS_FILE, 'r') as edge_labels_file_handle:
         edge_labels = map(int, edge_labels_file_handle.readlines())
     for (src_id, dst_id), edge_label in zip(edges, edge_labels):
-        graph_id = node_id_to_graph_id[src_id]
+        graph_id = node_id_to_graph_id[src_id]  # ((2, 1), 0)S
         graph = graph_id_to_graph[graph_id]
         assert dst_id in graph.nodes
-        graph.add_edge(src_id, dst_id, edge_label=edge_label)
+        graph.add_edge(src_id, dst_id, edge_label=edge_label)   # ここまでで許容されてはいないか？
+
     with open(GRAPH_LABELS_FILE, 'r') as graph_labels_file_handle:
         graph_id_to_graph_label = dict(enumerate(map(lambda label: 1 if label.strip()=='1' else 0, graph_labels_file_handle.readlines()), start=1))
         assert set(graph_id_to_graph_label.values()) == {0, 1}

@@ -29,9 +29,9 @@ import networkx as nx
 from typing import Dict, Tuple
 import os , sys
 
-#from misc_utilities import *
-#from global_values import *
-#from mutag_classifier import MUTAGClassifier
+from misc_utilities import *
+from global_values import *
+from mutag_classifier import MUTAGClassifier
 
 ###########
 # Globals #

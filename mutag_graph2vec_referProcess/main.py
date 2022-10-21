@@ -27,6 +27,7 @@ import pandas as pd
 import multiprocessing as mp
 import networkx as nx
 from typing import Dict, Tuple
+import os , sys
 
 #from misc_utilities import *
 #from global_values import *
@@ -248,5 +249,8 @@ def main() -> None:
 
 if __name__ == '__main__':
     print("Hello")
+    main_path = os.getcwd()
+    data_path = "/mutag_graph2vec_referProcess"
+    os.chdir(main_path + data_path)
     graph_id_to_graph, graph_id_to_graph_label = process_data()
     main()

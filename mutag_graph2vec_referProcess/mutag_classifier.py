@@ -238,19 +238,19 @@ class MUTAGClassifier(pl.LightningModule):
     #    result = pl.TrainResult(minimize=loss)
     #    return result
 
-    def training_step_end(self, training_step_result: pl.TrainResult) -> pl.TrainResult:
-        assert tuple(training_step_result.minimize.shape) == (self.hparams.batch_size,), f'Training loss has shape {only_one(training_step_result.minimize.shape)} (expected {self.hparams.batch_size}).'
-        mean_loss = training_step_result.minimize.mean()
-        result = pl.TrainResult(minimize=mean_loss)
-        result.log('training_loss', mean_loss, prog_bar=True)
-        return result
+    #def training_step_end(self, training_step_result: pl.TrainResult) -> pl.TrainResult:
+    #    assert tuple(training_step_result.minimize.shape) == (self.hparams.batch_size,), f'Training loss has shape {only_one(training_step_result.minimize.shape)} (expected {self.hparams.batch_size}).'
+    #    mean_loss = training_step_result.minimize.mean()
+    #    result = pl.TrainResult(minimize=mean_loss)
+    #    result.log('training_loss', mean_loss, prog_bar=True)
+    #    return result
     
-    def _eval_step(self, batch_dict: dict) -> pl.EvalResult:
-        loss = self._get_batch_loss(batch_dict)
-        assert len(loss.shape) == 1 
-        result = pl.EvalResult()
-        result.log('loss', loss)
-        return result
+    #def _eval_step(self, batch_dict: dict) -> pl.EvalResult:
+    #    loss = self._get_batch_loss(batch_dict)
+    #    assert len(loss.shape) == 1 
+    #    result = pl.EvalResult()
+    #    result.log('loss', loss)
+    #    return result
     
     def _eval_epoch_end(self, step_result: pl.EvalResult, eval_type: Literal['validation', 'testing']) -> pl.EvalResult:
         loss = step_result.loss.mean()

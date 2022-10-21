@@ -117,10 +117,11 @@ def main(args):
     print("\nFeature extraction started.\n")
     print(args.wl_iterations)
     # OKここを解析したらここの部分に関してはどうにかなりそう
+    args.workers = 1
     document_collections = Parallel(n_jobs=args.workers)(delayed(feature_extractor)(g, args.wl_iterations) for g in tqdm(graphs))
     print("\nOptimization started.\n")
 
-    model = Doc2Vec(document_collections,
+    model = Doc2Vec(document_collections,   # 結論としてはこいつに似せた形で変換したら良いんやろ
                     vector_size=args.dimensions,    # いくつにベクト化するのか(128)
                     window=0,                           # 何単語でベクトル化するか
                     min_count=args.min_count,           # 指定の回数以下の出現回数の単語は無視する

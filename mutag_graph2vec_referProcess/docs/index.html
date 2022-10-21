@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MUTAG Classification</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <script src="https://d3js.org/d3.v5.js"></script>
+  </head>
+  <body>
+    <header class="stone-background">
+      <div class="vertical-padding">
+	<h1 style="">Chemical Compound Classification</h1>
+	<p>Neural classification of chemical compounds according to their mutagenic effect on bacteria using graph2vec.</p>
+      </div>
+    </header>
+    <section id="introduction">
+      <div class="horizontal-padding vertical-padding">
+	<h3>Introduction</h3>
+	<p>This article goes over our findings for classifying chemical compounds based on their mutagenic effect on a particular bacterium.</p>
+	<p>This effort was motivated by a desire to verify the validity of the results from <a target="_blank" href="https://arxiv.org/abs/1707.05005">graph2vec</a>. Rather than directly reproducing the results by using an SVM classifier, we chose to use a feedforward neural network.</p>
+	<p>We use the MUTAG dataset. It can be found <a target="_blank" href="https://ls11-www.cs.tu-dortmund.de/staff/morris/graphkerneldatasets">here</a>.</p>
+	<p>We were able to achieve similar results and give an explanation of this in our <a href="#experiment-results">result summary</a> found later in this article.</p>
+	<p>The source code for our experiments can be found <a target="_blank" href="https://github.com/paul-tqh-nguyen/mutag_graph2vec_neural_classifier">here</a>.</p>
+      </div>
+    </section>
+    <section id="experiment-overview" class="stone-background">
+      <div class="horizontal-padding vertical-padding">
+	<h3>Experiment Overview</h3>
+	<p>The MUTAG dataset contains 188 chemical compounds that are labelled according to their mutagenic effect on a bacterium. The dataset represents each chemical compound as a graph where nodes are atoms and edges are chemical bonds.</p>
+	<p>Here's example #<span id="mutag-example-graph-id"></span> from the dataset:</p>
+	<div id="data-set-example-container" class="container-center"><svg></svg></div>
+	<p>The <a target="_blank" href="https://arxiv.org/abs/1707.05005">graph2vec paper</a> split the data to use 90% for training and 10% for testing. We similarly used 10% for testing, 10% for validation, and 80% for training.</p>
+	<p>Here's a depiction of our model.</p>
+	<div class="architecture-depiction-container container-center">
+	  <svg id="neural-classifier-depiction"></svg>
+	</div>
+	<p>Dropout was applied after every dense layer.</p>
+	<p>The rounded result (either zero or one) was used to determine our final result. This means we used a threshold of 0.5. We did not optimize this threshold. </p>
+	<p>We used binary cross entropy as our loss function and the Adam optimizer. Rounding to get the final result did not happen during training (we simply used the result from the sigmoid).</p>
+	<p>The hyperparameters for our model were:</p>
+	<ul>
+	  <li>Weisfeiler-Lehman Iteration Count / Rooted Subgraph Size for graph2vec</li>
+	  <li>Embedding Size for graph2vec </li>
+	  <li>Number of graph2vec Training Epochs</li>
+	  <li>Learning Rate for graph2vec (used solely for graph2vec training)</li>
+	  <li>Batch Size</li>
+	  <li>Neural Learning Rate (used to train all parameters outside of graph2vec)</li>
+	  <li>Number of Dense Layers</li>
+	  <li>Gradient Clipping Threshold</li>
+	  <li>Dropout Probability</li>
+	</ul>
+	<p>We first trained our graph2vec embeddings and then trained the model itself independently (with the embedding vectors frozen).</p>
+	<p>We used early stopping when training the neural classifier but a fixed number of epochs for training our graph2vec embeddings.</p>
+	<p>Included in the dense layer count selection was the option to use zero dense layers, which turns our model into a logistic regression model.</p>
+	<p>We tuned our hyperparameters using two methods, via <a target="_blank" href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Random_search">random search</a> and via a <a target="_blank" href="http://proceedings.mlr.press/v28/bergstra13.pdf">tree-structured Parzen estimator</a> with <a target="_blank" href="https://arxiv.org/abs/1502.07943">successive halving</a>.</p>
+      </div>
+    </section>
+    <section id="experiment-results">
+      <div class="horizontal-padding vertical-padding">
+	<h3>Experiment Results</h3>
+	<p>We're using the same percent of the dataset for testing as done in the <a target="_blank" href="https://arxiv.org/abs/1707.05005">graph2vec paper</a>. Whether or not this small test set size was problematic (e.g. might lead to overfitting, especially given the small size of the dataset as a whole) was not explored as our goal was to merely produce similar results to the paper.</p>
+	<p>We ran <span id="total-number-of-hyperparameter-search-trials-span"></span> trials of hyperparameter search.</p>
+	<p>Here are our best overall results by validation accuracy:</p>
+	<div id="all-results-by-validation-accuracy" class="result-table-container"></div>
+	<p>Here are our best overall results by validation loss:</p>
+	<div id="all-results-by-validation-loss" class="result-table-container"></div>
+	<p>Note that some of the models above have zero dense layers, i.e. they are logistic regression models.</p>
+	<p>The <a target="_blank" href="https://arxiv.org/abs/1707.05005">graph2vec paper</a> reported 83.15% accuracy (with a standard deviation of 9.25%) on the MUTAG dataset. Given that we were able to achieve 89.47% test accuracy, it seems that the results from the graph2vec paper on the MUTAG dataset are reproducible with feed-forward neural network and logistic regression classifiers in addition to the SVM classifier used in the paper.</p>
+	<p>One flaw in our experiment was that our validation set was the same small size as the test set. We had <span id="total-number-of-models-with-max-validation-accuracy"></span> models achieve a validation accuracy of <span id="max-validation-accuracy-percent-span"></span>. However, some of them had testing scores as low as <span id="worst-testing-accuracy-with-max-validation-accuracy-percent-span"></span>. Thus, the validation accuracy wasn't a great indicator of whether or not the model was sufficiently accurate.</p>
+	<p>Validation loss served as a better metric as the models with the best validation losses tended to have better test losses. However, there's still a large amount of variance in the testing and validation accuracies of the models with the best validation losses, so validation loss isn't an ideal metric either.</p>
+	<p>If we split the data such that the validation dataset was larger, then it's possible that there'd be less variance in testing loss among the models with the best validation accuracies and among the models with the best validation losses since the validation set would be more representative and would help prevent overfitting (and would yield better testing results). This is something we'd keep in mind in the future if we were to conduct a similar experiment again.</p>
+      </div>
+    </section>
+    <section id="conclusion" class="stone-background">
+      <div class="horizontal-padding vertical-padding">
+	<h3>Conclusion</h3>
+	<p>It seems that we were able to reproduce the results from <a target="_blank" href="https://arxiv.org/abs/1707.05005">graph2vec</a> with both a feed-forward neural network architecture and logistic regression models (without tuning the classification threshold, which we hard-coded at 0.5).</p>
+	<p>Though their results on the MUTAG dataset were reproduced here, it's noteworthy that, as stated in the paper, <a target="_blank" href="https://arxiv.org/abs/1707.05005">graph2vec</a> was not aimed at solving such small datasets. There might be better methods aimed at handling small datasets that more robustly handle problems that come up when dealing with small datasets, e.g. picking a sufficiently large and representative validation or test set.</p>
+      </div>
+      <table style="table-layout: fixed; width: 100%; padding-top: 40px; padding-bottom: 40px;">
+	<tr>
+	  <td style="width:10%;"></td>
+	  <td style="width:30%;">
+      	    <card class="stone-background">
+      	      <a target="_blank" href="https://github.com/paul-tqh-nguyen">
+      		<div class="card-text">
+      		  <p>Interested in my work?</p>
+      		  <p><b>See my projects on GitHub.</b></p>
+      		</div>
+      	      </a>
+      	    </card>
+	  </td>
+	  <td style="width:20%;"></td>
+	  <td style="width:30%;">
+      	    <card class="stone-background">
+      	      <a target="_blank" href="https://paul-tqh-nguyen.github.io/about/">
+      		<div class="card-text">
+      		  <p>Want to learn more about me?</p>
+      		  <p><b>Visit my website.</b></p>
+      		</div>
+      	      </a>
+      	    </card>
+	  </td>
+	  <td style="width:10%;"></td>
+	</tr>
+      </table>
+    </section>
+    <script src="index.js"></script>
+  </body>
+</html>

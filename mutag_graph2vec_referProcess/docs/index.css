@@ -1,0 +1,387 @@
+
+/*****************/
+/* Custom Fonts  */
+/*****************/
+
+/* Julius Sans One */
+
+/* latin-ext */
+@font-face {
+  font-family: 'Julius Sans One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Julius Sans One'), local('JuliusSansOne-Regular'), url(https://fonts.gstatic.com/s/juliussansone/v8/1Pt2g8TAX_SGgBGUi0tGOYEga5WOzHsXy6KHHow-.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Julius Sans One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Julius Sans One'), local('JuliusSansOne-Regular'), url(https://fonts.gstatic.com/s/juliussansone/v8/1Pt2g8TAX_SGgBGUi0tGOYEga5WOwnsXy6KHHg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Libre Baskerville */
+
+/* latin-ext */
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Libre Baskerville'), local('LibreBaskerville-Regular'), url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNXaxMaC82U-ro.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Libre Baskerville';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Libre Baskerville'), local('LibreBaskerville-Regular'), url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxMaC82U.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Oxygen */
+
+/* latin-ext */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v10/2sDfZG1Wl4LcnbuKgE0mRUe0A4Uc.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v10/2sDfZG1Wl4LcnbuKjk0mRUe0Aw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/***********/
+/* General */
+/***********/
+
+body {
+    overflow-x: hidden;
+    font-family: 'Julius Sans One', sans-serif;
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
+.stone-background {
+    color: #fff;
+    background-color: #5498ba;
+    background-image: url(contours.png), url(gridlines.png), url(stone.png);
+    background-attachment: scroll, scroll, fixed;
+    background-position: top left, top left, top left;
+    background-repeat: repeat, repeat, no-repeat;
+    background-size: auto, auto, 100% 100%;
+}
+
+a {
+    color: #0095ff;
+}
+
+.stone-background a {
+    color: #ffe09e;
+}
+
+.stone-background h3 {
+    color: #fff;
+}
+
+header p {
+    font-size: 1.5em;
+}
+
+.vertical-padding {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.horizontal-padding {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+section {
+    width: 100%;
+}
+
+h1 {
+    padding-right: 80px;
+    padding-left: 80px;
+}
+
+h3 {
+    padding-right: 80px;
+    padding-left: 80px;
+    margin: 2em 0px 0px 0px;
+    color: #2e484c;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 1.8em;
+    font-weight: normal;
+    text-transform: uppercase;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+p {
+    padding-bottom: 30px;
+    padding-right: 80px;
+    padding-left: 80px;
+    font-family: 'Libre Baskerville', sans-serif;
+    font-size: 0.9em;
+    margin: 0.75em 0;
+    line-height: 2;
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+li {
+    font-family: 'Libre Baskerville', sans-serif;
+    font-size: 0.85em;
+    padding-bottom: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.container-center {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-family: sans-serif;
+}
+
+/**************************/
+/* Architecture Depiction */
+/**************************/
+
+div.architecture-depiction-container {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    font-family: sans-serif;
+    backdrop-filter: grayscale(50%) brightness(100%);
+    margin-bottom: 100px;
+    border: 1px solid #5f6566;
+    border-radius: 15px;
+}
+
+#architecture-summary svg {
+    background: rgba(219, 219, 219, 0.5);
+}
+
+#arrowhead {
+}
+
+.arrow-line {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+    stroke-opacity: 1.0;
+}
+
+.graph-group-background {
+    rx: 10;
+    stroke-width: 1.5;
+    stroke: #000;
+    fill: #fff;
+}
+
+.graph-edge-group {
+}
+
+.graph-edge {
+    stroke: black;
+    stroke-width: 1px;
+    stroke-opacity: 0.25;
+}
+
+.graph-node-group {
+}
+
+.graph-node {
+    r: 6;
+    fill: #DC9AF6;
+    stroke: black;
+    stroke-width: 2px;
+}
+
+.text-with-bbox-group {
+}
+
+.text-with-bbox-group-text {
+    fill: black;
+}
+
+.text-with-bbox-group-bounding-box {
+    rx: 10;
+    stroke-width: 1.5;
+    stroke: #000;
+    fill: #fff;
+}
+
+.graph2vec-group .text-with-bbox-group-bounding-box {
+    fill: #fff8c4;
+}
+
+.dense-group .text-with-bbox-group-bounding-box {
+    fill: #c4ffd0;
+}
+
+.fully-connected-group .text-with-bbox-group-bounding-box {
+    fill: #ffc4c4;
+}
+
+.sigmoid-group .text-with-bbox-group-bounding-box {
+    fill: #d8c4ff;
+}
+
+.round-group .text-with-bbox-group-bounding-box {
+    fill: #ffe2c4;
+}
+
+/*************/
+/* Accordion */
+/*************/
+
+.accordion-container {
+    border: 1px solid rgba(0,0,0,0.25);
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.125);
+    background: #fdfdfd;
+    width: 80vw;
+    margin-bottom: 25px;
+}
+
+.accordion-label {
+    transition: all 0.5s;
+    border: 0.125px solid rgba(0,0,0,0.05);
+    text-align: left;
+    background: #efefef;
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    font-family: 'Oxygen';
+}
+
+.accordion-label:hover {
+    background: #e0e0e0;
+}
+
+.accordion-label:active {
+    background: #d0d0d0;
+}
+
+.accordion-label:before {
+    content: '\02795 \00a0';
+    margin-left: 5px;
+}
+
+.accordion-label.active:before {
+    content: '\2796 \00a0';
+}
+
+.accordion-content {
+    transition: all 0.5s linear;
+}
+
+/*****************/
+/* Result Tables */
+/*****************/
+
+.result-table-container {
+    font-family: 'Oxygen';
+}
+
+.result-table-container p {
+    font-family: inherit;
+    padding: 1px 5px 1px 5px;
+}
+
+.result-table {
+    width: 40vw;
+    border-collapse: collapse
+}
+
+.result-table tr {
+    border: 0.25px solid rgba(0,0,0,0.05);
+}
+
+.result-table-title {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/***************************/
+/* Misc. D3 Visualizations */
+/***************************/
+
+#data-set-example-container {
+    width: 600px;
+    height: 400px;
+    display: fixed;
+    text-align: center;
+    padding: 10px;
+    font-family: sans-serif;
+    background: white;
+    margin-bottom: 100px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+/**********/
+/* Footer */
+/**********/
+
+card p {
+    padding: 0px;
+}
+
+card a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.card-text {
+    border: 0.1em solid #fff;
+    border-radius: 15px;
+    box-shadow: 0px 20px 20px -20px black;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+    transition: backdrop-filter 0.5s, all 0.5s;
+    backdrop-filter: grayscale(50%) brightness(80%);
+}
+
+.card-text:active {
+    transform: translateY(10px);
+    box-shadow: 0px 0px 0px 0px black;
+}
+
+.card-text:hover {
+    backdrop-filter: grayscale(100%) brightness(40%);
+}

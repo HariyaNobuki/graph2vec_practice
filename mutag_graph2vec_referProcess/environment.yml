@@ -1,0 +1,14 @@
+name: graph2vec
+
+dependencies:
+  - pytorch==1.4.0
+  - networkx
+  - more-itertools
+  - conda-forge::karateclub==1.0.15
+  - conda-forge::optuna
+  - conda-forge::typing_extensions
+  - scikit-learn
+  - matplotlib
+  - pip
+  - pip:
+    - pytorch-lightning==0.9.1rc3

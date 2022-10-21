@@ -28,9 +28,9 @@ import multiprocessing as mp
 import networkx as nx
 from typing import Dict, Tuple
 
-from misc_utilities import *
-from global_values import *
-from mutag_classifier import MUTAGClassifier
+#from misc_utilities import *
+#from global_values import *
+#from mutag_classifier import MUTAGClassifier
 
 ###########
 # Globals #
@@ -218,8 +218,12 @@ def analyze_hyperparameter_search_results() -> None:
 # Driver #
 ##########
 
-@debug_on_error
+#@debug_on_error
 def main() -> None:
+    # sry ONLY this part is very notice
+    print("Hello World")
+
+
     parser = argparse.ArgumentParser(prog='tool', formatter_class = lambda prog: argparse.HelpFormatter(prog, max_help_position = 9999))
     parser.add_argument('-train-default-model', action='store_true', help='Train the default classifier.')
     parser.add_argument('-hyperparameter-search', action='store_true', help='Perform several trials of hyperparameter search for the MUTAG classifier.')
@@ -243,4 +247,6 @@ def main() -> None:
     return
 
 if __name__ == '__main__':
+    print("Hello")
+    graph_id_to_graph, graph_id_to_graph_label = process_data()
     main()

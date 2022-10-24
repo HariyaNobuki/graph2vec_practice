@@ -1,6 +1,7 @@
 """Graph2Vec module."""
 
 import os
+import matplotlib.pyplot as plt
 import json
 import glob
 import hashlib
@@ -74,6 +75,9 @@ def dataset_reader(path):
     print(graph.edges)
     print(graph.adj)
     print(graph.degree)
+    fig = plt.figure()
+    nx.draw(graph, with_labels=True)
+    fig.savefig("sample_jS.png")
     if "features" in data.keys():
         features = data["features"]
         features = {int(k): v for k, v in features.items()}

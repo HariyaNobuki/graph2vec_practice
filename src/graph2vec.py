@@ -69,7 +69,7 @@ def dataset_reader(path):
     """
     name = path2name(path)
     data = json.load(open(path))
-    graph = nx.from_edgelist(data["edges"])
+    graph = nx.from_edgelist(data["edges"]) # これで一括ダウンロードが許されているらしい
     print(graph.nodes)
     print(graph.edges)
     print(graph.adj)

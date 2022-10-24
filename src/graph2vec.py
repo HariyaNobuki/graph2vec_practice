@@ -130,7 +130,7 @@ def main(args):
     print("\nFeature extraction started.\n")
     print(args.wl_iterations)
     for graph in graphs:
-        graph_id_to_graph = {graph_id: nx.Graph() for graph_id in set(graph.values())}
+        graph_id_to_graph = {graph_id: nx.Graph() for graph_id in range(len(graphs))}
     # OKここを解析したらここの部分に関してはどうにかなりそう
     args.workers = 1
     document_collections = Parallel(n_jobs=args.workers)(delayed(feature_extractor)(g, args.wl_iterations) for g in tqdm(graphs))

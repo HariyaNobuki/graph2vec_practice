@@ -29,7 +29,7 @@ class WeisfeilerLehmanMachine:
         self.features = features
         self.nodes = self.graph.nodes()
         self.extracted_features = [str(v) for k, v in features.items()]
-        self.do_recursions()
+        #self.do_recursions()
 
     def do_a_recursion(self):
         """
@@ -75,9 +75,9 @@ def dataset_reader(path):
     print(graph.edges)
     print(graph.adj)
     print(graph.degree)
-    fig = plt.figure()
-    nx.draw(graph, with_labels=True)
-    fig.savefig("sample_jS.png")    # 正味この状況さえつくれたら回転はしてくれるらしい
+    #fig = plt.figure()
+    #nx.draw(graph, with_labels=True)
+    #fig.savefig("sample_jS.png")    # 正味この状況さえつくれたら回転はしてくれるらしい
     if "features" in data.keys():
         features = data["features"]
         features = {int(k): v for k, v in features.items()}
@@ -104,7 +104,7 @@ def feature_extractor(path, rounds):    # rounds == iterations
     MakeVisualization()
 
     machine = WeisfeilerLehmanMachine(graph, features, rounds)
-    doc = TaggedDocument(words=machine.extracted_features, tags=["g_" + name])
+    doc = TaggedDocument(words=machine.extracted_features, tags=["g_" + name])  # featureは機能に対応している
     return doc
 
 def save_embedding(output_path, model, files, dimensions):

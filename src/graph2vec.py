@@ -7,6 +7,7 @@ import hashlib
 import pandas as pd
 import networkx as nx
 from tqdm import tqdm
+import networkx as nx
 from joblib import Parallel, delayed
 from param_parser import parameter_parser
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
@@ -82,6 +83,12 @@ def dataset_reader(path):
        
     return graph, features, name
 
+def MakeVisualization():    # 可視化ツール
+    print("### Vis ###")
+
+
+
+
 def feature_extractor(path, rounds):    # rounds == iterations
     """
     Function to extract WL features from a graph.
@@ -90,6 +97,8 @@ def feature_extractor(path, rounds):    # rounds == iterations
     :return doc: Document collection object.
     """
     graph, features, name = dataset_reader(path)
+    MakeVisualization()
+
     machine = WeisfeilerLehmanMachine(graph, features, rounds)
     doc = TaggedDocument(words=machine.extracted_features, tags=["g_" + name])
     return doc

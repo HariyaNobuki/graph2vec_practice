@@ -77,7 +77,7 @@ def dataset_reader(path):
     print(graph.degree)
     fig = plt.figure()
     nx.draw(graph, with_labels=True)
-    fig.savefig("sample_jS.png")
+    fig.savefig("sample_jS.png")    # 正味この状況さえつくれたら回転はしてくれるらしい
     if "features" in data.keys():
         features = data["features"]
         features = {int(k): v for k, v in features.items()}

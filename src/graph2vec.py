@@ -138,5 +138,6 @@ def main(args):
     save_embedding(args.output_path, model, graphs, args.dimensions)
 
 if __name__ == "__main__":
+    # 形式の展開だけは統一して書かないと駄目でしょう
     args = parameter_parser()
     main(args)
